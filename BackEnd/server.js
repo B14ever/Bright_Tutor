@@ -26,6 +26,8 @@ mongoose.connect( process.env.MoGO_URL)
  // Routes
     //Tutors Routes
 app.use('/tutor/signup',require('./Routes/Tutor/SignUp'))
+  //Customer Routes
+app.use('/customers/signup',require('./Routes/Customer/SignUp'))
  // Shared Routes
 app.use('/refershToken',require('./Routes/Share/RefreshToken'))
 app.use('/emailVerification',require('./Routes/Share/EmailVerification'))

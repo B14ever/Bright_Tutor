@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { setCredentials } from '../../Features/auth/authSlice'
-import { useLoginMutation } from '../../Features/auth/authApiSlice'
+import { setCredentials } from '../../Features/Shared/Auth/authSlice'
+import { useLoginMutation } from '../../Features/Shared/Auth/authApiSlice'
 import {styled} from '@mui/material/styles'
 import {Avatar,Button,TextField,Box,Typography, FormControl, FormHelperText} from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';

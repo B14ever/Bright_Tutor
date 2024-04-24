@@ -46,6 +46,11 @@ const Tutors = new mongoose.Schema({
             require: true,
         }
     },
+    teachers:{
+        type: String,
+        required: true,
+        default:false
+    },
     Education:{
         level:{
             type: String,
