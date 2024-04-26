@@ -22,16 +22,16 @@ const HomeNavBar = () => {
         <AppBar sx={{backgroundColor:'#fff',boxShadow:'none'}} component="nav">
         <Toolbar variant='dense' sx={{boxShadow:'none',background: '#1e88e5'}}>
                 <Grid sx={{placeItems:'center'}} container>
-                    <Grid xs={6} sm={6}  item>
+                    <Grid xs={4} sm={6}  item>
                         <Typography  sx={{textAlign:'left',color:'#fff',fontSize:{xm:'1.3rem',sm:'1.3rem'}}}>Bright Tutor</Typography>
                     </Grid>
                     {
                     (location.pathname === '/')?
-                    <Grid sm={6} xs={6}  item>
-                        <Box  sx={{ display: { xs:'flex', } }}>
+                    <Grid sm={6} xs={8}  item>
+                        <Box  sx={{ display: { display:'flex' } }}>
                             <Languagebtn/>
-                            <Button   onClick={()=>navigate('/login')} sx={{marginLeft:'10px',color:'#fff',textTransform:'none'}}>{t("Log in")}</Button>
-                            <Button  onClick={()=>navigate('/signup')} sx={{marginLeft:'10px',color:'#fff',textTransform:'none'}} >{t("Sign up")}</Button>
+                            <Button   onClick={()=>navigate('/login')} sx={{color:'#fff',textTransform:'none'}}>{t("Log in")}</Button>
+                            <Button  onClick={()=>navigate('/signup')} sx={{color:'#fff',textTransform:'none'}} >{t("Sign up")}</Button>
                          </Box>
                     </Grid>:
                     <Grid xs={4}sm={6}  item ><Box sx={{display:'flex',justifyContent:'flex-end'}}><Languagebtn/></Box></Grid>
