@@ -4,17 +4,18 @@ const {CreateToken} = require('../../MiddleWare/CreateToken')
 const Login = async (req, res) => {
   const {Email , Password} = req.body
   const cookies = req.cookies
+  
   try{
       const check_user = await Users.findOne({Email: `${Email}`}).exec()
       if(!check_user){
-          const error = new Error('የተሳሳተ የይለፍ ቃል ወይም የሚስጥር ቃል')
+          const error = new Error('InvalidCredentials')
           error.status = 401
           throw error
       }
       else{
           const check_password = await ComparePassword(Password , check_user.Password)
           if(!check_password){
-              const error = new Error('የተሳሳተ የይለፍ ቃል ወይም የሚስጥር ቃል')
+              const error = new Error('InvalidCredentials')
               error.status = 401
               throw error
           }

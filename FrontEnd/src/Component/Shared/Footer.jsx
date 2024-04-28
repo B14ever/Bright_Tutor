@@ -14,7 +14,7 @@ const Footer = () => {
   ];
 
   return (
-      <footer className='relative isolate overflow-hidden bg-gray-800 my-10 py-4 px-6 '>
+      <footer className='relative isolate overflow-hidden bg-gray-800 mt-auto py-4 px-6 '>
           <div  className="text-white  flex flex-col items-center gap-4">
          <h2>© Bright Tutore</h2> 
            <ul className="flex space-x-4">

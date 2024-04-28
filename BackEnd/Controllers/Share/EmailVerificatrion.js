@@ -4,6 +4,7 @@ const Tutors = require('../../Modules/Tutors')
 const Admin = require('../../Modules/Admin')
 const {CreateToken} = require('../../MiddleWare/CreateToken')
 const EmailVerification = async (req,res,next)=>{
+   
     const { Code, Path } = req.body
     const userId = req.id;
     const role = req.role
@@ -16,7 +17,7 @@ const EmailVerification = async (req,res,next)=>{
         } else {
             const currentTime = new Date().getTime();
             if (currentTime > getUser.otp.ValidUntil) {
-                const error = new Error('Code has been expired')
+                const error = new Error('ExipiredCode')
                 error.status = 408
                 throw error
             } else {
@@ -25,7 +26,7 @@ const EmailVerification = async (req,res,next)=>{
                         // verifiy user
                         const verifiyUser = await Users.updateOne({ _id: `${userId}` }, { $set: { isVerified: true } })
                         if (!verifiyUser) {
-                            const error = new Error('Server Error')
+                            const error = new Error('ServerError')
                             error.status = 501
                             throw error
                         } else {
@@ -54,17 +55,17 @@ const EmailVerification = async (req,res,next)=>{
                     } else {
                         const result = await Users.updateOne({ _id: `${userId}` }, { $inc: { 'otp.attempts': 1 } });
                         if (result.modifiedCount === 0) {
-                            const error = new Error('Server Error')
+                            const error = new Error('ServerError')
                             error.status = 501
                             throw error
                         } else {
-                            const error = new Error('Invalid Password')
+                            const error = new Error('InvalidCode')
                             error.status = 401
                             throw error
                         }
                     }
                 } else {
-                    const error = new Error('Maximum Attempts')
+                    const error = new Error('MaximumAttempts')
                     error.status = 429
                     throw error
                 }

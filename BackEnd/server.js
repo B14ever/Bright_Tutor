@@ -29,5 +29,8 @@ app.use('/tutor/signup',require('./Routes/Tutor/SignUp'))
   //Customer Routes
 app.use('/customers/signup',require('./Routes/Customer/SignUp'))
  // Shared Routes
+ app.use('/login',require('./Routes/Share/login'))
+ app.use('/forgetPassword',require('./Routes/Share/ForgetPassword'))
+ app.use('/changePassword',require('./Routes/Share/ChangePassword'))
 app.use('/refershToken',require('./Routes/Share/RefreshToken'))
 app.use('/emailVerification',require('./Routes/Share/EmailVerification'))

@@ -8,9 +8,43 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body: { ...credentials }
             })
         }),
+        forgotPassword: builder.mutation({
+            query: (Email) => ({
+              url: "/forgetPassword",
+              method: "POST",
+              body: { Email },
+            }),
+        }),
+        emailVerification: builder.mutation({
+            query: ({Code,Path}) => ({
+              url: "/emailVerification",
+              method: "POST",
+              body: {Code,Path},
+            }),
+        }),
+        resendCode: builder.mutation({
+            query: (token) => ({
+              url: "/emailVerification/requestcode",
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              withCredentials: true,
+            }),
+          }),
+        changePassword: builder.mutation({
+            query: (passwordData) => ({
+              url: "/changePassword",
+              method: "POST",
+              body: { ...passwordData },
+            }),
+        }),
     })
 })
 
-export const {
-    useLoginMutation
-} = authApiSlice
+export const { useLoginMutation, 
+               useForgotPasswordMutation, 
+               useChangePasswordMutation,
+               useEmailVerificationMutation,
+               useResendCodeMutation
+               } = authApiSlice;

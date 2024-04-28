@@ -7,26 +7,29 @@ const {SendEmail} = require('../../MiddleWare/SendEmail')
 const RequestCode = async(req, res ,next) =>{
     const id = req.id
     const role = req.role
-    const cookies = req.cookies
-    // check if there is a cookie in ther broweser
-    if(!cookies?.jwt) return res.status(401)
-    const refreshToken = cookies.jwt
-    // clear cookies in the browser
-    res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
     // Generate new OTP
     const newOTP = OTP_Genterator()
     try{
-       
         check_user = await Users.findOne({_id:`${id}`}).exec()
         if(!check_user){
-            const error  = new Error('There is no account with this email')
+            const error  = new Error('ServerError')
             error.status = 401
             throw error
         }
-        check_user.RefreshToken = check_user.RefreshToken.filter(rt=> rt !== refreshToken)
-        await check_user.save()
-        const token = CreateToken(id,role)
-        SendEmail(req, res,next,newOTP.code,check_user.Email,token)
+        else { 
+            check_user.RefreshToken = [] // delete all refersh tooken of the user this makes the user loged out of any device
+            await check_user.save()
+            // create a new one time password
+           const update_User_Otp = await Users.updateOne({_id:`${id}`}, { $set: { otp: newOTP } }).exec()
+            if (!update_User_Otp) {
+                const error = new Error('ServerError');
+                error.status = 409; // set the status code to 409 (Conflict)
+                throw error;
+            } else {
+              const token = CreateToken(id, role)
+              SendEmail(req, res, next, newOTP.code, Email, token)
+            }
+     }
     }catch(err){
         res.status(err.status || 500).json({err:err.messsage})
     }
