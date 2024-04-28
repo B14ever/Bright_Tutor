@@ -4,5 +4,5 @@ const router = express.Router()
 const {RecoverPassword} = require('../../Controllers/Share/RecoverPassword')
 //midleware
 const {JWT_Verification} = require('../../MiddleWare/JWT_Verification')
-router.put('/',JWT_Verification,RecoverPassword)
+router.post('/',JWT_Verification,RecoverPassword)
 module.exports = router

@@ -33,10 +33,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
             }),
           }),
         changePassword: builder.mutation({
-            query: (passwordData) => ({
+            query: (data,token) => ({
               url: "/changePassword",
               method: "POST",
-              body: { ...passwordData },
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              withCredentials: true,
+              body: data,
             }),
         }),
     })

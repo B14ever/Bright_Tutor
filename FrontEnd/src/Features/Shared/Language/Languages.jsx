@@ -25,6 +25,11 @@ export const TranslationEn ={
     NoServerResponse:'No server responce',
     LoginFailed:'Log in failed, please try again',
     InvalidCredentials:'Incorrect email or password',
+    Submit:'Submit',
+    NoNewPassword:'Please enter new password',
+    NoConfirmPassword:'Please confrim new password',
+    ConfrimNotMatch:'Confrim password not match',
+
     //
     JoinUs:'Join us',
     ForgotPassword:"Forget password?",
@@ -43,7 +48,11 @@ export const TranslationEn ={
     Nocode:'Did not receive code',
     Verify:'Verify',
     EnterVerificationcode:'Enter Verification code',
-    VerifyEmail:'Verify email'}
+    VerifyEmail:'Verify email',
+    PasswordChanged:'password changed, log in ',
+    NewPassword:'New password',
+    ConfirmPassword:'Confirm password'
+}
 
 export const TranslationAm ={   
     HeroHeader:"ለልጅዎ ትክክለኛውን አስጠኚ ያግኙ",
